@@ -1,10 +1,19 @@
-import React from 'react'
+import React, {useEffect}from 'react'
 import NavBar from './components/NavBar/NavBar'
 import {Container, Grid} from '@material-ui/core'
 import Posts from './components/Posts/Posts'
 import Form from './components/Form/Form'
+import {getPosts} from './actions/posts'
+
+import {useDispatch} from 'react-redux'
 
 function App() {
+  const dispatcher= useDispatch()
+
+  useEffect(() => {
+    dispatcher(getPosts())
+  }, [])
+  
   return (
     <>
     <NavBar/>
