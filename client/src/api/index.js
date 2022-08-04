@@ -9,3 +9,5 @@ export const createpost=(newpost)=>axios.post(`${url}/createpost`,newpost)
 export const updatepost=(id, updatedPost)=>axios.put(`${url}/${id}`,updatedPost)
 
 export const deletepost=(id)=>axios.delete(`${url}/delete/${id}`)
+
+export const likepost=(id)=>axios.put(`${url}/like/${id}`)

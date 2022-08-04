@@ -51,3 +51,18 @@ export const deletepost = async (req, res) => {
         console.log(error);
     }
 }
+
+
+export const likepost = async (req, res) => {
+    try {
+        const { id } = req.params
+        let post = await PostMessage.findById(id);
+        if (!post) { return res.status(404).send("Not Found") }
+
+        const updatedPost = await PostMessage.findByIdAndUpdate(id, { likecount: post.likecount + 1 }, { new: true });
+
+        res.json(updatedPost);
+    } catch (error) {
+        console.log(error)
+    }
+}

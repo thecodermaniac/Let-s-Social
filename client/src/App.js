@@ -4,25 +4,27 @@ import { Container, Grid } from '@material-ui/core'
 import Posts from './components/Posts/Posts'
 import Form from './components/Form/Form'
 import { getPosts } from './actions/posts'
+import style from './style'
 
 import { useDispatch } from 'react-redux'
 
 function App() {
+  const classes=style()
   const [currentId, setCurrentId] = useState(0);
   const dispatcher = useDispatch()
 
   useEffect(() => {
     dispatcher(getPosts())
-  }, [dispatcher])
+  }, [currentId, dispatcher])
 
   return (
     <>
       <NavBar />
       <Container>
-        <Grid container
+        <Grid className={classes.mainContainer} container
           justifyContent="center"
-          alignItems="stretch">
-          <Grid item xs={12} sm={7}>
+          alignItems="stretch" spacing={3}>
+          <Grid item xs={12} sm={7} >
             <Posts setCurrentId={setCurrentId} />
           </Grid>
           <Grid item xs={12} sm={4}>
