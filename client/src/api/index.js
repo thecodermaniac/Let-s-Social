@@ -1,9 +1,9 @@
 import axios from 'axios'
 
-const url='http://localhost:5000/posts/getpost'
+const url='http://localhost:5000/posts'
 
-const url_post='http://localhost:5000/posts/createpost'
+export const fetchpost=()=>axios.get(`${url}/getpost`)
 
-export const fetchpost=()=>axios.get(url)
+export const createpost=(newpost)=>axios.post(`${url}/createpost`,newpost)
 
-export const createpost=(newpost)=>axios.post(url_post,newpost)
+export const updatepost=(id, updatedPost)=>axios.put(`${url}/${id}`,updatedPost)
