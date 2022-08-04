@@ -28,3 +28,12 @@ export const updatePost = (id, post) => async (dispatch) => {
     }
 };
 
+export const deletepost=(id)=>async(dispatch) =>{
+    try {
+        await api.deletepost(id);
+
+    dispatch({ type: 'DELETE', payload: id });
+    } catch (error) {
+        console.log(error);
+    }
+}

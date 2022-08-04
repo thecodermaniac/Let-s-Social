@@ -26,16 +26,28 @@ export const createpost = async (req, res) => {
 export const updatepost = async (req, res) => {
     try {
         const { id } = req.params
-    const postnew = req.body
+        const postnew = req.body
 
-    let post = await PostMessage.findById(id);
-    if (!post) { return res.status(404).send("Not Found") }
+        let post = await PostMessage.findById(id);
+        if (!post) { return res.status(404).send("Not Found") }
 
-    const updatedpost = await PostMessage.findByIdAndUpdate(id, postnew, { new: true })
+        const updatedpost = await PostMessage.findByIdAndUpdate(id, postnew, { new: true })
 
-    res.json(updatedpost)
+        res.json(updatedpost)
     } catch (error) {
         console.log(error);
     }
-    
+
+}
+
+export const deletepost = async (req, res) => {
+    try {
+        const { id } = req.params
+        let post = await PostMessage.findById(id);
+        if (!post) { return res.status(404).send("Not Found") }
+        await PostMessage.findByIdAndRemove(id)
+        res.json({ message: "Post Succesfully deleted" })
+    } catch (error) {
+        console.log(error);
+    }
 }
