@@ -54,12 +54,21 @@ export const deletepost = async (req, res) => {
 
 
 export const likepost = async (req, res) => {
+    if (!req.userId) {
+        return res.json({ message: "Unauthenticated" });
+    }
     try {
         const { id } = req.params
         let post = await PostMessage.findById(id);
         if (!post) { return res.status(404).send("Not Found") }
+        const index = post.likes.findIndex((id) => id === String(req.userId));
 
-        const updatedPost = await PostMessage.findByIdAndUpdate(id, { likecount: post.likecount + 1 }, { new: true });
+        if (index === -1) {
+            post.likes.push(req.userId);
+        } else {
+            post.likes = post.likes.filter((id) => id !== String(req.userId));
+        }
+        const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
 
         res.json(updatedPost);
     } catch (error) {

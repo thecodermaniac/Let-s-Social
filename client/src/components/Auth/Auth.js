@@ -5,9 +5,12 @@ import { useHistory } from 'react-router-dom';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Input from './Input';
 import useStyles from './style';
+import {signin,signup} from '../../actions/auth'
 
+const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
 function Auth() {
+    const [form, setForm] = useState(initialState);
     const [isSignup, setIsSignup] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -19,11 +22,16 @@ function Auth() {
         setIsSignup((prevIsSignup) => !prevIsSignup);
         setShowPassword(false);
     }
-    const handleChange = () => {
-        console.log('lol');
-    }
+    const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (isSignup) {
+            dispatch(signup(form));
+          } else {
+            dispatch(signin(form));
+          }
+        console.log(form);
     }
 
     return (
