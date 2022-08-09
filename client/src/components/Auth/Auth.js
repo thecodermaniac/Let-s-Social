@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Input from './Input';
 import useStyles from './style';
-import { GoogleLogin } from 'react-google-login';
+
 
 function Auth() {
     const [isSignup, setIsSignup] = useState(false);
@@ -25,13 +25,9 @@ function Auth() {
     const handleSubmit = (e) => {
         e.preventDefault();
     }
-    const googleSuccess = async (res) => {
-        console.log(res);
-    }
-    const googleError = (error) => {
-        console.log(error);
-    }
+
     return (
+
         <Container component="main" maxWidth="xs">
             <Paper className={classes.paper} elevation={3}>
                 <Avatar className={classes.avatar}>
@@ -50,14 +46,6 @@ function Auth() {
                         <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
                         {isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />}
                     </Grid>
-                    <GoogleLogin clientId='todo ID'
-                        render={(renderprops) => (
-                            <Button className={classes.googleButton} color="primary" fullWidth onClick={renderprops.onClick} disabled={renderprops.disabled} variant="contained">
-                                Google Sign In
-                            </Button>
-                        )}
-                        onSuccess={googleSuccess}
-                        onFailure={googleError} />
                     <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
                         {isSignup ? 'Sign Up' : 'Sign In'}
                     </Button>
