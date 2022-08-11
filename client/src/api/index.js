@@ -2,6 +2,13 @@ import axios from 'axios'
 
 const url = 'http://localhost:5000/posts'
 
+
+axios.interceptors.request.use((req) => {
+    if (localStorage.getItem('profile')) {
+        req.headers.authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`
+    }
+    return req
+})
 export const fetchpost = () => axios.get(`${url}/getpost`)
 
 export const createpost = (newpost) => axios.post(`${url}/createpost`, newpost) //newpost 1st arg...e just function arg ar 2nd arg ta backend er jonno

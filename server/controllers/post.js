@@ -15,7 +15,7 @@ export const getpost = async (req, res) => {     //eikhane callback funtion gulo
 export const createpost = async (req, res) => {
     try {
         const post = req.body
-        const newpost = new PostMessage(post)
+        const newpost = new PostMessage({ ...post, creator: req.userId, createAt: new Date().toISOString() })
         await newpost.save()
         console.log(newpost)
     } catch (error) {
