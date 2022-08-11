@@ -2,13 +2,24 @@
 import PostMessage from "../models/postMessage.js"
 
 
-export const getpost = async (req, res) => {     //eikhane callback funtion gulo define kori
+export const getposts = async (req, res) => {     //eikhane callback funtion gulo define kori
     try {
         const postmessage = await PostMessage.find()
         res.status(200).json(postmessage)
 
     } catch (error) {
         res.status(404).json({ message: error.message })
+    }
+}
+export const getPost = async (req, res) => { 
+    const { id } = req.params;
+
+    try {
+        const post = await PostMessage.findById(id);
+        
+        res.status(200).json(post);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
     }
 }
 

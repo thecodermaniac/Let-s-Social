@@ -31,7 +31,6 @@ function Form({ currentId, setCurrentId }) {
     if (currentId === 0) {
       dispatcher(createpost({ ...postData, name: user?.result?.name }))
       clear()
-      dispatcher(getPosts())
     }
     else {
       dispatcher(updatePost(currentId, { ...postData, name: user?.result?.name }))
