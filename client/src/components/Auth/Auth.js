@@ -32,7 +32,6 @@ function Auth() {
             dispatch(signin(form));
             console.log(form);
           }
-        console.log(form);
     }
 
     return (
