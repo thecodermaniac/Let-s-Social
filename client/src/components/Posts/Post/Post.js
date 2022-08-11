@@ -7,9 +7,9 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 
-import { deletepost,likepost } from '../../../actions/posts';
+import { deletepost, likepost } from '../../../actions/posts';
 
-function Post({ post, setCurrentId}) {
+function Post({ post, setCurrentId }) {
   const dispatch = useDispatch();
   const classes = useStyles();
 
@@ -18,7 +18,7 @@ function Post({ post, setCurrentId}) {
     <Card className={classes.card}>
       <CardMedia className={classes.media} image={post.selectedfile} title={post.title} />
       <div className={classes.overlay}>
-        <Typography variant="h6">{post.creator}</Typography>
+        <Typography variant="h6">{post.name}</Typography>
         <Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
       </div>
       <div className={classes.overlay2}>

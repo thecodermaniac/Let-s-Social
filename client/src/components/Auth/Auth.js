@@ -30,6 +30,7 @@ function Auth() {
             dispatch(signup(form));
           } else {
             dispatch(signin(form));
+            console.log(form);
           }
         console.log(form);
     }
