@@ -11,6 +11,8 @@ axios.interceptors.request.use((req) => {
 })
 export const fetchpost = () => axios.get(`${url}/getpost`)
 
+export const singlepost = (id) => axios.get(`${url}/${id}`)
+
 export const createpost = (newpost) => axios.post(`${url}/createpost`, newpost) //newpost 1st arg...e just function arg ar 2nd arg ta backend er jonno
 
 export const updatepost = (id, updatedPost) => axios.put(`${url}/${id}`, updatedPost)

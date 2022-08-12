@@ -5,7 +5,7 @@ import {getposts,createpost,updatepost, deletepost, likepost,getPost} from '../c
 import authmiddelware from '../middleware/authmiddleware.js'
 
 router.get('/getpost',getposts)
-router.get('post/:id',getPost)
+router.get('/:id',getPost)
 router.post('/createpost',authmiddelware,createpost)
 router.put('/:id',authmiddelware,updatepost)
 router.delete('/delete/:id',authmiddelware,deletepost)

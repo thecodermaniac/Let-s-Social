@@ -8,6 +8,16 @@ export const getPosts = () => async (dispatch) => {
         console.log(error);
     }
 }
+export const getPost = (id) => async (dispatch) => {
+    try {
+
+        const { data } = await api.singlepost(id);
+
+        dispatch({ type: 'FETCH_POST', payload: data });
+    } catch (error) {
+        console.log(error);
+    }
+};
 
 export const createpost = (newpost) => async (dispatch) => {
     try {

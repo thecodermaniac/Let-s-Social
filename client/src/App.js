@@ -9,7 +9,7 @@ import {
 } from "react-router-dom"
 import Auth from './components/Auth/Auth'
 
-
+import PostDetail from './components/PostDetail/PostDetail'
 import Home from './components/Home/Home'
 
 function App() {
@@ -23,6 +23,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={() => <Redirect to="/posts" />} />
             <Route path="/posts" exact component={Home} />
+            <Route path="/posts/post/:id" exact component={PostDetail} />
             <Route path='/auth' exact component={() => (!user ? <Auth /> : <Redirect to="/" />)} />
           </Switch>
         </Container>
