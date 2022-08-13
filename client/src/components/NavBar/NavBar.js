@@ -13,7 +13,7 @@ function NavBar() {
   }
   return (
     <AppBar className={classes.appBar} position='static' color='inherit' style={{flexDirection:'row'}}>
-      <Typography variant='h4' className={classes.heading}>Let's Social</Typography>
+      <Typography variant='h4' className={classes.heading} >Let's Social</Typography>
 
       <Toolbar className={classes.toolbar}>
         {user ? (<div className={classes.profile}>
