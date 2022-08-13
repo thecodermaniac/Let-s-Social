@@ -21,6 +21,8 @@ export const deletepost = (id) => axios.delete(`${url}/delete/${id}`)
 
 export const likepost = (id) => axios.put(`${url}/like/${id}`)
 
+export const commentPost = (value, id) => axios.post(`${url}/${id}/commentPost`, { value })
+
 const urluser = 'http://localhost:5000/users'
 
 export const signIn = (formData) => axios.post(`${urluser}/signin`, formData)
