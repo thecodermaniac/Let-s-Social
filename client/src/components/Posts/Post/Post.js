@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import useStyles from './style';
-import { Card, CardActions, CardContent, CardMedia, Button, Typography,ButtonBase } from '@material-ui/core/';
+import { Card, CardActions, CardContent, CardMedia, Button, Typography, ButtonBase } from '@material-ui/core/';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -16,13 +16,26 @@ function Post({ post, setCurrentId }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const classes = useStyles();
+  const [likes, setLikes] = useState(post?.likes)
+
+  const handlelike = () => {
+    console.log('pressed');
+    dispatch(likepost(post._id))
+    if (post?.likes.find((like) => like === (user?.result?._id))) {
+      setLikes(post?.likes?.filter((id) => id !== user?.result?._id));
+    }
+    else {
+      setLikes([...post.likes, user?.result?._id]);
+    }
+  }
+
   const Likes = () => { //eta ar ekta component jeta onno jaigai kora jeto but ekhane kora 
-    if (post.likes.length > 0) {
-      return post.likes.find((like) => like === (user?.result?._id))
+    if (likes.length > 0) {
+      return likes.find((like) => like === (user?.result?._id))
         ? (
-          <><ThumbUpAltIcon fontSize="small" />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}`}</>
+          <><ThumbUpAltIcon fontSize="small" />&nbsp;{likes.length > 2 ? `You and ${likes.length - 1} others` : `${likes.length} like${likes.length > 1 ? 's' : ''}`}</>
         ) : (
-          <><ThumbUpAltOutlined fontSize="small" />&nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}</>
+          <><ThumbUpAltOutlined fontSize="small" />&nbsp;{likes.length} {likes.length === 1 ? 'Like' : 'Likes'}</>
         );
     }
 
@@ -59,7 +72,7 @@ function Post({ post, setCurrentId }) {
         </CardContent>
       </ButtonBase>
       <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" disabled={!user?.result} onClick={() => dispatch(likepost(post._id))}><Likes /></Button>
+        <Button size="small" color="primary" disabled={!user?.result} onClick={handlelike}><Likes /></Button>
         {(user?.result?._id === post?.creator) && (<Button size="small" color="primary" disabled={!user?.result} onClick={() => dispatch(deletepost(post._id))}><DeleteIcon fontSize="small" /> Delete</Button>)}
       </CardActions>
     </Card>

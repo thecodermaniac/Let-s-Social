@@ -14,7 +14,7 @@ export default (state = { posts: [] }, action) => {
             case 'COMMENT':
                 return{
                     ...state,posts: state.posts.map((post)=>{
-                        if (post._id===action.payload._id) {
+                        if (post._id===action.payload._id) {  //ei jinis ta ternary operator diye hoye jeto
                             return action.payload
                         }
                         return post
