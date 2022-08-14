@@ -14,6 +14,10 @@ app.use(cors())
 app.use('/posts', postRoutes)
 app.use('/users', userRoutes)
 
+app.get('/', (req, res) => {
+    res.send('App is running') //to test if the server is running
+})
+
 const Connection_URL = 'mongodb+srv://InfinityXZod:LXaULb72Ht3.bqG@cluster0.w5larfk.mongodb.net/?retryWrites=true&w=majority'
 const port = process.env.PORT || 5000
 
