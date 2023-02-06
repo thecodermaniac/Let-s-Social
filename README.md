@@ -2,7 +2,7 @@
 
 ## This is Full stack social media mern WebApp
 
-###The UI of the App:-
+### The UI of the App:-
 
 ![image](https://user-images.githubusercontent.com/79108244/217043907-b2479208-b93a-4cd0-be03-5164b0524b2c.png)
 
