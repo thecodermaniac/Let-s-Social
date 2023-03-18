@@ -6,9 +6,7 @@ import express from 'express'
 import postRoutes from './routes/post.js'
 import userRoutes from './routes/user.js'
 const corsOptions = {
-    origin: 'https://lets-social.netlify.app',
-    credentials: true,            //access-control-allow-credentials:true
-    optionSuccessStatus: 200
+    origin: 'https://lets-social.netlify.app'
 }
 
 const app = express()

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url = 'https://let-s-social-5pp4xik1x-thecodermaniac.vercel.app/posts'
+const url = 'http://localhost:5000/posts'
 
 
 axios.interceptors.request.use((req) => {
@@ -23,7 +23,7 @@ export const likepost = (id) => axios.put(`${url}/like/${id}`)
 
 export const commentPost = (value, id) => axios.post(`${url}/${id}/commentPost`, { value })
 
-const urluser = 'https://let-s-social-5pp4xik1x-thecodermaniac.vercel.app/users'
+const urluser = 'http://localhost:5000/users'
 
 export const signIn = (formData) => axios.post(`${urluser}/signin`, formData)
 export const signUp = (formData) => axios.post(`${urluser}/signup`, formData)
