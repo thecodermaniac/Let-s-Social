@@ -5,16 +5,18 @@ import express from 'express'
 
 import postRoutes from './routes/post.js'
 import userRoutes from './routes/user.js'
-
-const app = express()
-app.use(bodyParser.json({ limit: "30mb", extended: true }))
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 const corsOptions = {
     origin: 'https://lets-social.netlify.app',
     credentials: true,            //access-control-allow-credentials:true
     optionSuccessStatus: 200
 }
+
+const app = express()
 app.use(cors(corsOptions))
+app.use(bodyParser.json({ limit: "30mb", extended: true }))
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
+
+
 
 app.use('/posts', postRoutes)
 app.use('/users', userRoutes)
